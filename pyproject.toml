@@ -1,0 +1,9 @@
+[project]
+name = "NumberLang"
+version = "0.0.1"
+authors = [
+  { name="Danny Love", email="danielov@pdx.edu" },
+]
+description = ""
+readme = "README.md"
+requires-python = ">=3.11"
