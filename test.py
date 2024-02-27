@@ -1,2 +1,2 @@
 def test_func():
-    print("Test successful!")
+    print("Test was successful!")
