@@ -5,7 +5,7 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from torch import Tensor
 
-from device import device
+from .device import device
 
 
 def binary_to_decimal(binary_tensor: torch.Tensor) -> torch.Tensor:
