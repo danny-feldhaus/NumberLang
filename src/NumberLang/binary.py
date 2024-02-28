@@ -5,6 +5,8 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from torch import Tensor
 
+from .device import device
+
 
 def binary_to_decimal(binary_tensor: torch.Tensor) -> torch.Tensor:
     """
@@ -64,7 +66,9 @@ def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
 
     """
     dataset = BinaryNumberDataset(n_bits)
-    return DataLoader(dataset, batch_size, shuffle=True)
+    return DataLoader(
+        dataset, batch_size, shuffle=True, generator=torch.Generator(device=device)
+    )
 
 
 class TestBinaryToDecimalConversion(unittest.TestCase):
