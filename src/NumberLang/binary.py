@@ -69,7 +69,7 @@ def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
 
     """
     dataset = BinaryNumberDataset(n_bits).to(device)
-    return DataLoader(dataset, batch_size, shuffle=True)
+    return DataLoader(dataset, batch_size, shuffle=True, device=device)
 
 
 class TestBinaryToDecimalConversion(unittest.TestCase):
