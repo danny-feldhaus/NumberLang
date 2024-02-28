@@ -1,0 +1,8 @@
+torch
+numpy
+num2words
+tqdm
+scipy 
+librosa 
+unidecode 
+inflect 

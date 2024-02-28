@@ -1,0 +1,12 @@
+README
+pyproject.toml
+src/NumberLang/__init__.py
+src/NumberLang/binary.py
+src/NumberLang/listener.py
+src/NumberLang/scribe.py
+src/NumberLang/speaker.py
+src/NumberLang/training.py
+src/NumberLang.egg-info/PKG-INFO
+src/NumberLang.egg-info/SOURCES.txt
+src/NumberLang.egg-info/dependency_links.txt
+src/NumberLang.egg-info/top_level.txt
