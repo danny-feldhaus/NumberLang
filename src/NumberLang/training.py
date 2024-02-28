@@ -82,6 +82,7 @@ def train(
         )
         for decimal_input, binary_input in progress_bar:
             print("BI1:", binary_input.device)
+            """
             optimizer.zero_grad()
             results = run_through_all_models(binary_input, scribe, speaker, listener)
             # Calculate loss using the custom numeric difference criterion
@@ -96,7 +97,7 @@ def train(
 
             # Update the progress bar
             progress_bar.set_postfix(loss=loss.item())
-
+            """
         average_loss = total_loss / len(dataloader)
         print(f"Completed Epoch {epoch+1}, Average Loss: {average_loss:.4f}")
         scheduler.step(average_loss)
