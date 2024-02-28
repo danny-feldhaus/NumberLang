@@ -28,6 +28,11 @@ class ResultCollection:
 def run_through_all_models(
     binary_input: torch.Tensor, scribe: Scribe, speaker: nn.Module, listener: Listener
 ) -> ResultCollection:
+    binary_input = binary_input.to(device)
+    scribe = scribe.to(device)
+    speaker = speaker.to(device)
+    listener = listener.to(device)
+
     char_logits = scribe(binary_input)
 
     mapped_char_logits = map_scribe_to_speaker(mapped_char_logits)
