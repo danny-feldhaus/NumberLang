@@ -48,8 +48,8 @@ def run_through_all_models(
 
 def train(
     scribe: Scribe,
-    listener: Listener,
     speaker: nn.Module,
+    listener: Listener,
     dataloader: DataLoader,
     optimizer: Optimizer,
     criterion,
