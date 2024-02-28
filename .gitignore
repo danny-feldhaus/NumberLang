@@ -1,4 +1,4 @@
 *.egg-info
 .*/
-__pycache__/
+src/NumberLang/__pycache__/
 src/*.egg-info/

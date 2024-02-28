@@ -55,7 +55,7 @@ class BinaryNumberDataset(Dataset):
         decimal_num = binary_to_decimal(binary_num)
         return (
             decimal_num.to(device),
-            binary_num.to(device),
+            binary_num,
         )  # Return the same number as both input and target
 
 
@@ -68,7 +68,7 @@ def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
         batch_size (int): The number of binary/decimal pairs to give in a batch.
 
     """
-    dataset = BinaryNumberDataset(n_bits)
+    dataset = BinaryNumberDataset(n_bits).to(device)
     return DataLoader(dataset, batch_size, shuffle=True)
 
 
