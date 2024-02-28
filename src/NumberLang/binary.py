@@ -51,10 +51,10 @@ class BinaryNumberDataset(Dataset):
 
     def __getitem__(self, idx) -> Tuple[Tensor, Tensor]:
         # Generate a random binary number
-        binary_num = torch.randint(0, 2, (self.bits,), device=device).float()
+        binary_num = torch.randint(0, 2, (self.bits,)).float()
         decimal_num = binary_to_decimal(binary_num)
         return (
-            decimal_num.to(device),
+            decimal_num,
             binary_num,
         )  # Return the same number as both input and target
 
@@ -68,8 +68,8 @@ def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
         batch_size (int): The number of binary/decimal pairs to give in a batch.
 
     """
-    dataset = BinaryNumberDataset(n_bits).to(device)
-    return DataLoader(dataset, batch_size, shuffle=True, device=device)
+    dataset = BinaryNumberDataset(n_bits)
+    return DataLoader(dataset, batch_size, shuffle=True)
 
 
 class TestBinaryToDecimalConversion(unittest.TestCase):
