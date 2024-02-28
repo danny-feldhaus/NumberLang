@@ -80,7 +80,6 @@ def train(
             dataloader, desc=f"Epoch {epoch+1}/{epochs}", total=len(dataloader)
         )
         for decimal_input, binary_input in progress_bar:
-            binary_input = binary_input.to(device)
             optimizer.zero_grad()
             results = run_through_all_models(binary_input, scribe, speaker, listener)
             # Calculate loss using the custom numeric difference criterion
