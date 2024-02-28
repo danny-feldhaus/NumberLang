@@ -67,7 +67,7 @@ def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
     """
     dataset = BinaryNumberDataset(n_bits)
     return DataLoader(
-        dataset, batch_size, shuffle=True, generator=torch.Generator(device="cuda")
+        dataset, batch_size, shuffle=False, generator=torch.Generator(device="cuda")
     )
 
 
