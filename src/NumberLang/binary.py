@@ -52,8 +52,8 @@ class BinaryNumberDataset(Dataset):
     def __getitem__(self, idx) -> Tuple[Tensor, Tensor]:
         # Generate a random binary number
         binary_num = torch.randint(0, 2, (self.bits,)).float()
-        # decimal_num = binary_to_decimal(binary_num)
-        return (binary_num, binary_num)
+        decimal_num = binary_to_decimal(binary_num)
+        return (decimal_num, binary_num)
 
 
 def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
@@ -67,7 +67,7 @@ def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
     """
     dataset = BinaryNumberDataset(n_bits)
     return DataLoader(
-        dataset, batch_size, shuffle=True, generator=torch.Generator(device=device)
+        dataset, batch_size, shuffle=True, generator=torch.Generator(device="cuda")
     )
 
 
