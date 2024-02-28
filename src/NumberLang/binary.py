@@ -5,8 +5,6 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from torch import Tensor
 
-from .device import device
-
 
 def binary_to_decimal(binary_tensor: torch.Tensor) -> torch.Tensor:
     """
@@ -52,11 +50,8 @@ class BinaryNumberDataset(Dataset):
     def __getitem__(self, idx) -> Tuple[Tensor, Tensor]:
         # Generate a random binary number
         binary_num = torch.randint(0, 2, (self.bits,)).float()
-        decimal_num = binary_to_decimal(binary_num)
-        return (
-            decimal_num,
-            binary_num,
-        )  # Return the same number as both input and target
+        # decimal_num = binary_to_decimal(binary_num)
+        return (binary_num, binary_num)
 
 
 def make_binary_dataloader(n_bits: int, batch_size: int) -> DataLoader:
