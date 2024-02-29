@@ -90,7 +90,7 @@ def train(
             optimizer.zero_grad()
             results = run_through_all_models(binary_input, scribe, speaker, listener)
             # Calculate loss using the custom numeric difference criterion
-            print(results)
+            results.print_shapes()
             loss = criterion(results.speaker_in, results.listener_out)
 
             # Backpropagation
