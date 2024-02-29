@@ -27,7 +27,6 @@ class Scribe(nn.Module):
         )
 
     def forward(self, x):
-        print("Scribe:", self.device, "X:", x.device)
         x = self.fc_layers(x)
         # Ensure the reshaping reflects the intended [batch_size, output_length, num_classes]
         x = x.view(-1, self.output_length, self.num_classes)
