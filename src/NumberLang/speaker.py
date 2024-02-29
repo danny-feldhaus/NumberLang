@@ -1,6 +1,8 @@
 import torch
 from torch import nn
+import torch.nn.functional as F
 from device import device
+from listener import gumbel_softmax
 
 
 def initialize_speaker() -> nn.Module:
@@ -32,11 +34,10 @@ def map_scribe_to_speaker(scribe_logits: torch.Tensor) -> torch.Tensor:
         torch.Tensor: A tensor of the same batch size and sequence length, but each element
                       is an integer in the range [38, 63].
     """
-    # Apply softmax to convert logits into probabilities
-    probabilities = nn.functional.softmax(scribe_logits, dim=-1)
+    # Apply Gumbel-Softmax to convert logits into a differentiable approximation of hard indices
+    soft_indices = F.gumbel_softmax(scribe_logits, tau=1, hard=False, dim=-1)
 
-    # Use argmax to select the class with the highest probability
-    indices = torch.argmax(probabilities, dim=-1)
+    # Optionally, map the soft indices to the expected range [38, 63]
+    # Note: This step may require adjustment based on how you intend to use the output with Tacotron2
 
-    # Adjust indices to fall within the range [38, 63]
-    return indices + 38
+    return soft_indices + 38
