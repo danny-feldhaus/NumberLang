@@ -24,6 +24,13 @@ class ResultCollection:
 
     listener_out: torch.Tensor
 
+    def print_shapes(self):
+        print(f"Scribe in: {self.scribe_in.shape}")
+        print(f"Scribe out: {self.scribe_out.shape}")
+        print(f"Speaker in: {self.speaker_in.shape}")
+        print(f"Speaker out: {self.speaker_out.shape}")
+        print(f"Listener out: {self.listener_out.shape}")
+
 
 def run_through_all_models(
     binary_input: torch.Tensor, scribe: Scribe, speaker: nn.Module, listener: Listener
