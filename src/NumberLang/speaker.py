@@ -39,6 +39,4 @@ def map_scribe_to_speaker(scribe_logits: torch.Tensor) -> torch.Tensor:
     indices = torch.argmax(probabilities, dim=-1)
 
     # Adjust indices to fall within the range [38, 63]
-    mapped_indices = indices + 38
-
-    return mapped_indices
+    return indices + 38

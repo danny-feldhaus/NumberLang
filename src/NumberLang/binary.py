@@ -32,10 +32,8 @@ def binary_to_decimal(binary_tensor: torch.Tensor) -> torch.Tensor:
     decimal = torch.matmul(binary_tensor, multiplier)
 
     # If the original input was 1D, return a scalar tensor
-    if decimal.size(0) == 1:
-        return decimal.squeeze()
 
-    return decimal
+    return decimal.squeeze() if decimal.size(0) == 1 else decimal
 
 
 class BinaryNumberDataset(Dataset):
