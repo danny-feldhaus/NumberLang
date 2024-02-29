@@ -34,7 +34,7 @@ def run_through_all_models(
 
     mapped_char_logits = map_scribe_to_speaker(char_logits)
     char_logits_lengths = torch.full(
-        (char_logits_lengths.size(0),), scribe.output_length, dtype=torch.long
+        (mapped_char_logits.size(0),), scribe.output_length, dtype=torch.long
     ).to(device)
     spectrogram, _, _ = speaker.infer(mapped_char_logits, char_logits_lengths)
     spectrogram = spectrogram.unsqueeze(1)
