@@ -28,6 +28,7 @@ class ResultCollection:
 def run_through_all_models(
     binary_input: torch.Tensor, scribe: Scribe, speaker: nn.Module, listener: Listener
 ) -> ResultCollection:
+    print("test")
     binary_input = binary_input.to(device)
 
     char_logits = scribe(binary_input)
