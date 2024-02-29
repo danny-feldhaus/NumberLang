@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from .device import device
+from device import device
 
 
 def initialize_speaker() -> nn.Module:

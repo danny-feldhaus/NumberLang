@@ -6,10 +6,10 @@ from torch.optim import Optimizer
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader
 from tqdm.notebook import tqdm
-from .scribe import Scribe
-from .listener import Listener
-from .speaker import map_scribe_to_speaker
-from .device import device
+from scribe import Scribe
+from listener import Listener
+from speaker import map_scribe_to_speaker
+from device import device
 
 
 @dataclass
