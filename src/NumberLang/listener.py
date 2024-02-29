@@ -17,7 +17,7 @@ def gumbel_softmax(logits, tau=1, hard=False, dim=-1):
 
 class Listener(nn.Module):
     def __init__(self, bits):
-        super(Listener, self).__init__()
+        super("Listener", self).__init__()
         self.conv_layers = nn.Sequential(
             nn.Conv2d(
                 1, bits * 2, kernel_size=3, stride=1, padding=1
