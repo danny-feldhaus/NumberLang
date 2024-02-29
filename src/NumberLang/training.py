@@ -91,7 +91,7 @@ def train(
             results = run_through_all_models(binary_input, scribe, speaker, listener)
             # Calculate loss using the custom numeric difference criterion
             results.print_shapes()
-            loss = criterion(results.speaker_in, results.listener_out)
+            loss = criterion(results.scribe_in, results.listener_out)
 
             # Backpropagation
             loss.requires_grad_(True)
