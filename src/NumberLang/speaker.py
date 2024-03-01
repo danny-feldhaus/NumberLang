@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from device import device
+from scribe import ArgMaxSTE
 
 
 def initialize_speaker() -> nn.Module:
@@ -21,8 +22,9 @@ def initialize_speaker() -> nn.Module:
 def map_scribe_to_speaker(scribe_logits: torch.Tensor) -> torch.Tensor:
     """
     Converts logits from the Scribe model into integers in the range [38, 63] by first applying
-    a softmax function to convert logits into probabilities, then using argmax to select the
-    highest probability class, and finally adjusting the indices to the desired range.
+    a softmax function to convert logits into probabilities, then using a custom Straight-Through
+    Estimator for argmax to select the highest probability class, and finally adjusting the indices
+    to the desired range.
 
     Args:
         logits (torch.Tensor): The raw output logits from the Scribe model, shaped
@@ -32,12 +34,5 @@ def map_scribe_to_speaker(scribe_logits: torch.Tensor) -> torch.Tensor:
         torch.Tensor: A tensor of the same batch size and sequence length, but each element
                       is an integer in the range [38, 63].
     """
-    # Apply softmax to convert logits into probabilities
-    probabilities = nn.functional.softmax(scribe_logits, dim=-1)
-
-    # Use argmax to select the class with the highest probability
-    indices = torch.argmax(probabilities, dim=-1)
-
-    # Adjust indices to fall within the range [38, 64]
-
-    return indices + 38
+    # Replace the direct argmax operation with the STE version
+    return ArgMaxSTE.apply(scribe_logits)

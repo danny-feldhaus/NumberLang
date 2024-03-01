@@ -1,5 +1,21 @@
 from torch import nn
 from device import device
+from torch.autograd import Function
+
+
+class ArgMaxSTE(Function):
+    @staticmethod
+    def forward(ctx, input):
+        # Perform the argmax operation and adjust indices to the desired range
+        indices = input.argmax(dim=-1) + 38
+        return (
+            indices.float()
+        )  # Ensure the output is floating-point for gradient computation
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        # Straight-through estimator: pass the gradient unchanged
+        return grad_output
 
 
 class Scribe(nn.Module):
@@ -30,4 +46,6 @@ class Scribe(nn.Module):
         x = self.fc_layers(x)
         # Ensure the reshaping reflects the intended [batch_size, output_length, num_classes]
         x = x.view(-1, self.output_length, self.num_classes)
+        # x = gumbel_softmax(x)
+
         return x
