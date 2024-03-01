@@ -1,5 +1,5 @@
 from torch import nn
-from device import device
+from .device import device
 
 
 class Scribe(nn.Module):
