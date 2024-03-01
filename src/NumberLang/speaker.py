@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from .device import device
+from device import device
 
 
 def initialize_speaker() -> nn.Module:
@@ -38,6 +38,6 @@ def map_scribe_to_speaker(scribe_logits: torch.Tensor) -> torch.Tensor:
     # Use argmax to select the class with the highest probability
     indices = torch.argmax(probabilities, dim=-1)
 
-    # Adjust indices to fall within the range [38, 63]
+    # Adjust indices to fall within the range [38, 64]
 
     return indices + 38
